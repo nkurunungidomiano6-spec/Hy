@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f5f9;--card:#fff;--text:#1d2433;--muted:#8a96b0;--top:#fff;--purple:#6f42c1;--pink:#d6246e;--blue:#1a8cff;--chip:#eceef4}
+body.dark{--bg:#12141c;--card:#1d2030;--text:#e9ecf5;--muted:#8d97b3;--top:#1a1d2b;--chip:#2a2e42}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:90px}
+.top{position:sticky;top:0;z-index:10;background:var(--top);height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;box-shadow:0 2px 6px rgba(0,0,0,.12)}
+.burger{background:none;border:0;width:28px;cursor:pointer}
+.burger span{display:block;height:3px;background:var(--text);margin:5px 0;border-radius:2px}
+.burger span:nth-child(2){width:70%}
+.logo{margin-left:14px;font-weight:700;color:var(--purple);font-size:18px;flex:1}
+.icons{display:flex;gap:8px;align-items:center}
+.ib{position:relative;width:34px;height:34px;border-radius:50%;background:var(--chip);border:0;color:var(--text);cursor:pointer;font-size:15px}
+.badge{position:absolute;top:-8px;right:-6px;background:#e53935;color:#fff;font-size:12px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center}
+.avatar-s{width:26px;height:26px;border-radius:6px;background:var(--text);color:var(--top);display:grid;place-items:center;font-size:14px}
+.wrap{max-width:480px;margin:0 auto;padding:24px 18px}
+.welcome{background:var(--purple);border-radius:22px;padding:18px;display:flex;align-items:center;gap:18px;color:#1a1033;box-shadow:0 4px 12px rgba(111,66,193,.3)}
+.pic{width:66px;height:66px;border-radius:50%;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:8px;color:#333;flex-shrink:0}
+.pic i{font-size:26px;color:#111}
+.welcome small{font-size:13px;display:block;margin-bottom:6px}
+.copy{background:var(--blue);color:#fff;border:0;border-radius:4px;padding:9px 18px;font:600 14px 'Nunito',sans-serif;cursor:pointer}
+.copy i{margin-right:6px}
+.stats{margin-top:18px;background:linear-gradient(135deg,#6f42c1,#d6246e);border-radius:6px;display:grid;grid-template-columns:repeat(4,1fr);padding:18px 6px;text-align:center;color:#fff}
+.stats i{font-size:14px;margin-bottom:10px}
+.stats b{display:block;font-size:15px;font-weight:600;margin-bottom:8px}
+.stats span{font-size:14px;font-weight:600}
+.actions{margin-top:18px;display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.act{aspect-ratio:.85;border-radius:10px;border:0;color:#fff;background:linear-gradient(160deg,#d6246e,#6f42c1);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font:600 10px 'Nunito',sans-serif;cursor:pointer;text-decoration:none}
+.act i{font-size:15px}
+.groups{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.grp{background:var(--card);border-radius:6px;padding:22px 14px;text-align:center;text-decoration:none;color:var(--text);box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.grp i{font-size:17px;margin-bottom:10px}
+.grp h4{font-size:15px;font-weight:700;margin-bottom:8px}
+.grp p{color:#9fb0d0;font-size:14px;line-height:1.8}
+.fab{position:fixed;right:20px;bottom:100px;width:80px;height:80px;border-radius:50%;background:var(--pink);color:#fff;border:0;font-size:22px;box-shadow:0 4px 12px rgba(0,0,0,.3);cursor:pointer}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#0f1a1a;height:98px;display:flex;justify-content:space-around;align-items:center;padding:0 14px;gap:10px}
+.nav a{height:84px;min-width:74px;flex:1;max-width:130px;border-radius:6px;background:var(--pink);color:#fff;text-decoration:none;font-size:15px;display:flex;align-items:center;justify-content:center;gap:8px;padding:0 8px}
+.nav a.on{background:var(--purple)}
+.nav a.app{flex-direction:column;gap:6px;max-width:58px;min-width:58px;font-size:14px}
+.nav i{font-size:20px}
+</style>
+</head>
+<body>
+<header class="top">
+  <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <div class="logo"><i class="fa-solid fa-gem"></i> VOTEX CASH</div>
+  <div class="icons">
+    <button class="ib" aria-label="Language"><i class="fa-solid fa-globe"></i></button>
+    <button class="ib" id="theme" aria-label="Theme"><i class="fa-solid fa-sun"></i></button>
+    <button class="ib" id="fs" aria-label="Fullscreen"><i class="fa-solid fa-expand"></i></button>
+    <button class="ib" aria-label="Notifications"><i class="fa-regular fa-bell"></i><span class="badge">4</span></button>
+    <div class="avatar-s"><i class="fa-solid fa-camera"></i></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="welcome">
+    <div class="pic"><i class="fa-solid fa-camera"></i>No image<br>available</div>
+    <div>
+      <small>Welcome back, <span id="uname">moth</span></small>
+      <button class="copy" id="ref"><i class="fa-regular fa-copy"></i>Copy Referral Link</button>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div><i class="fa-solid fa-wallet"></i><b>20,000</b><span>Balance</span></div>
+    <div><i class="fa-solid fa-money-bill-trend-up"></i><b>36,000</b><span>Earnings</span></div>
+    <div><i class="fa-solid fa-briefcase"></i><b>210,000</b><span>Invested</span></div>
+    <div><i class="fa-solid fa-money-bill-wave"></i><b>16,000</b><span>Withdraws</span></div>
+  </section>
+
+  <section class="actions">
+    <a class="act" href="#invest"><i class="fa-solid fa-circle-dollar-to-slot"></i>Invest</a>
+    <a class="act" href="#withdraw"><i class="fa-solid fa-building-columns"></i>Withdraw</a>
+    <a class="act" href="#reinvest"><i class="fa-solid fa-rotate"></i>Re-invest</a>
+    <a class="act" href="#records"><i class="fa-solid fa-file-lines"></i>Records</a>
+    <a class="act" href="#referrals"><i class="fa-solid fa-file-lines"></i>Referrals</a>
+  </section>
+
+  <section class="groups">
+    <a class="grp" href="#" target="_blank"><i class="fa-brands fa-whatsapp" style="color:#25d366"></i><h4>WHATSAPP GROUP 1</h4><p>Join our main WhatsApp group</p></a>
+    <a class="grp" href="#" target="_blank"><i class="fa-brands fa-telegram" style="color:#e0245e"></i><h4>TELEGRAM GROUP</h4><p>Join our official Telegram community</p></a>
+  </section>
+</main>
+
+<button class="fab" aria-label="Support"><i class="fa-solid fa-headset"></i></button>
+
+<nav class="nav">
+  <a href="#" class="on"><i class="fa-solid fa-house"></i>Home</a>
+  <a href="#"><i class="fa-solid fa-hand-holding-heart"></i>Packages</a>
+  <a href="#"><i class="fa-solid fa-gear"></i>Profile</a>
+  <a href="#" class="app"><i class="fa-solid fa-table-cells-large"></i>App</a>
+</nav>
+
+<script>
+document.getElementById('theme').onclick=()=>document.body.classList.toggle('dark');
+document.getElementById('fs').onclick=()=>{document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()};
+document.getElementById('ref').onclick=()=>{
+  const link=location.origin+'/register?ref='+document.getElementById('uname').textContent;
+  (navigator.clipboard?navigator.clipboard.writeText(link):Promise.reject()).then(()=>alert('Referral link copied')).catch(()=>prompt('Copy your referral link:',link));
+};
+</script>
+</body>
+</html>
